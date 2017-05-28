@@ -2,3 +2,10 @@ language: node_js
 node_js: node
 services:
 - mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: UoSLvXVa1XpPvavpUSuCBxyK9b+sR4M6TeT7t0+sEsL5sxNjGWaeJKUvdUeKzJMg0tEDa1N8djTOfLMJynWPdYjvMsqOxJ3QK/K2QUXD8aFULWv7P7Vei7Fx5rX0iHZtu3pldyfKLxVcjhkDvnoE41zJUzHUtx8t4eq11fqeXk2edWjQulpX+01bmVY1HAbnaNSicKvnbyTb9UF9VdJSnV+9/mykAdThzqnMabOsGcejh2PxTpwVx4qqkww3seFdJBQvM6ASLYyR2pOhWRNSIKaAN/4K0XPgSWTnRbscK3ovr/LbyAYWjPD/4cjyMTbZWEVgiuv51pN+SUP3XCA+EIoaK68KFQuXWGWThQpu0XUCJR/rauS/ICYbuPGe36vy2S7wQQBJ4ayepgiP+aCEb+a1rZs26YJbd4FbHWPW57BvFt9bCTa24hyCYMVuGU8veqqmHM0heWZ1LeUhuXq5DirUAu3a6qy6milzTEsbGcqcYcN3pfc2wd+tl7u4uktUY5Hv2/yDAsHl3GPLDzkTShv2K+UZMhg5iNiFk/F/HuyEENaBhbvdjp3xt9ealHQdIKgaDn9g+9IPNe0BWsvm2cy1xFhFKGnE873SDhRHwm6peAiuf19nC6X+SFWQAx+AfnK0YbOzi7uzo3TvwBTPvgqkhAqfKWU5UNc7FZlROo8=
+  app: 'https://fathomless-gorge-55210.herokuapp.com/'
+  on:
+    repo: Tzikas/plate
