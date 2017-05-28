@@ -15,7 +15,8 @@ app.use(bodyParser.json())
 // MONGOOSE CONNECT
 // ===========================================================================
 //mongoose.connect('mongodb://localhost:27017/todos')
-mongoose.connect('mongodb://nikonikonikoniko:Canela8!@ds155091.mlab.com:55091/yoooo')
+
+/*mongoose.connect('mongodb://localhost:27017/todos')
 
 var db = mongoose.connection
 db.on('error', ()=> {console.log( '---Gethyl FAILED to connect to mongoose')})
@@ -27,6 +28,104 @@ var serve = http.createServer(app);
 var io = socketServer(serve);
 serve.listen(3000,()=> {console.log("+++Gethyl Express Server with Socket Running!!!")})
 //serve.listen("mongodb://nikonikonikoniko:Canela8!@ds155091.mlab.com:55091/yoooo",()=> {console.log("mongodb://nikonikonikoniko:Canela8!@ds155091.mlab.com:55091/yoooo")})
+
+*/
+
+
+const path = require('path');
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const historyApiFallback = require('connect-history-api-fallback');
+
+const config = require('./config/config');
+const webpackConfig = require('./webpack.config');
+
+const isDev = process.env.NODE_ENV !== 'production';
+const port  = process.env.PORT || 8080;
+
+
+// Configuration
+// ================================================================================================
+
+// Set up Mongoose
+//mongoose.connect(config.db);mongodb://nikonikonikoniko:Canela8!@ds155091.mlab.com:55091/yoooo
+
+mongoose.connect('mongodb://nikonikonikoniko:Canela8!@ds155091.mlab.com:55091/yoooo')
+//mongoose.connect('mongodb://localhost:27017/todos')
+
+mongoose.Promise = global.Promise;
+
+//const app = express();
+//app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser.json());
+
+// API routes
+//require('./routes')(app);
+
+if (isDev) {
+  const compiler = webpack(webpackConfig);
+
+  app.use(historyApiFallback({
+    verbose: false
+  }));
+
+  app.use(webpackDevMiddleware(compiler, {
+    publicPath: webpackConfig.output.publicPath,
+    contentBase: path.resolve(__dirname, '../client/public'),
+    stats: {
+      colors: true,
+      hash: false,
+      timings: true,
+      chunks: false,
+      chunkModules: false,
+      modules: false
+    }
+  }));
+
+  app.use(webpackHotMiddleware(compiler));
+  app.use(express.static(path.resolve(__dirname, '../dist/public')));
+} else {
+  app.use(express.static(path.resolve(__dirname, '../dist/public')));
+  app.get('*', function (req, res) {
+    res.sendFile(path.resolve(__dirname, '../dist/public/index.html'));
+    res.end();
+  });
+}
+
+app.listen(port, '0.0.0.0', (err) => {
+  if (err) {
+    console.log(err);
+  }
+
+  console.info('>>> 🌎 Open http://0.0.0.0:%s/ in your browser.', port);
+});
+
+module.exports = app;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var serve = http.createServer(app);
+var io = socketServer(serve);
+serve.listen(3000,()=> {console.log("+++Gethyl Express Server with Socket Running!!!")})
+
 
 
 /***************************************************************************************** */
@@ -90,3 +189,7 @@ io.on('connection', function (socket) {
 	})
 	
 });
+
+
+
+
