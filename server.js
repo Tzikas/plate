@@ -14,7 +14,8 @@ app.use(bodyParser.json())
 
 // MONGOOSE CONNECT
 // ===========================================================================
-mongoose.connect('mongodb://localhost:27017/todos')
+//mongoose.connect('mongodb://localhost:27017/todos')
+mongoose.connect('mongodb://nikonikonikoniko:Canela8!@ds155091.mlab.com:55091/yoooo')
 
 var db = mongoose.connection
 db.on('error', ()=> {console.log( '---Gethyl FAILED to connect to mongoose')})
@@ -25,6 +26,7 @@ db.once('open', () => {
 var serve = http.createServer(app);
 var io = socketServer(serve);
 serve.listen(3000,()=> {console.log("+++Gethyl Express Server with Socket Running!!!")})
+//serve.listen("mongodb://nikonikonikoniko:Canela8!@ds155091.mlab.com:55091/yoooo",()=> {console.log("mongodb://nikonikonikoniko:Canela8!@ds155091.mlab.com:55091/yoooo")})
 
 
 /***************************************************************************************** */
