@@ -1,15 +1,17 @@
 {
-  "name": "synccounter",
+  "name": "MERN-boilerplate",
   "version": "1.0.0",
-  "description": "syncing counter app",
-  "main": "index.js",
-  "author": "Gethyl George Kurian",
+  "description": "MERN stack project boilerplate",
+  "author": "Eugene Cheung",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arkon/MERN-boilerplate.git"
+  },
   "license": "MIT",
+  "private": true,
   "scripts": {
-    "start": "webpack-dev-server --content-base --inline --hot --history-api-fallback",
-    "server": "babel-node  server.js",
-    "server2": "nodemon server.js",
-    "start-both": "nodemon server.js | npm run start"
+    "start": "webpack -p --progress --profile --colors && node server",
+    "start:dev": "node server"
   },
   
   "dependencies": {
