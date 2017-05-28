@@ -6,7 +6,7 @@
   "author": "Gethyl George Kurian",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --content-base --inline --hot --history-api-fallback",
+    "start": "webpack-dev-server --content-base --inline --hot --history-api-fallback && node server.js",
     "server": "babel-node  server.js",
     "server2": "nodemon server.js",
     "start-both": "nodemon server.js | npm run start"
